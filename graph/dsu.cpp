@@ -1,0 +1,24 @@
+int parent[N],sz[N],freq[N],cmp;
+void make_set(int v){
+    parent[v]=v;
+    sz[v]=1;
+    freq[1]++;
+    cmp++;
+}
+int find_set(int v){
+    if (v==parent[v]) return v;
+    return parent[v]=find_set(parent[v]);
+}
+void union_sets(int a,int b){
+    a=find_set(a);
+    b=find_set(b);
+    if (a!=b){
+        if (sz[a]<sz[b]) swap(a,b);
+        freq[sz[a]]--;
+        freq[sz[b]]--;
+        parent[b]=a;
+        sz[a]+=sz[b];
+        freq[sz[a]]++;
+        cmp--;
+    }
+}
