@@ -1,13 +1,9 @@
-int Lis(vector<int>&a,int n)
-{
-    //for LDS reverse vector a,then calculate
-    //then reverse the ans array
-    int lis=0;
-    vector<int>ans;
-    for (int i=0;i<n;i++)
-    {
-        auto p=lower_bound(all(ans),a[i]);
-        if (p==ans.end()) ans.push_back(a[i]);
+int lis(vector<int>&a,int n){
+    vector<int>v;
+    for (int i=0;i<n;i++){
+        int p=lower_bound(all(v),a[i])-v.begin();
+        if (p==v.size()) v.push_back(a[i]);
+        else v[p]=a[i];
     }
-    return lis;
+    return v.size();
 }
